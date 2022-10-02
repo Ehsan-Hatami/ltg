@@ -1,6 +1,7 @@
 using System.Collections;
 using AutoFixture;
 using LiveTixGroup.Models;
+using LiveTixGroup.Models.ExternalApiResponses;
 using Moq;
 using Xunit;
 
@@ -27,31 +28,31 @@ private Mock<IAggregator> _mockAggregator;
 	public async Task Given_PhotoAlbum_When_NoUserIdFilterIsProvided_Then_ReturnsAllCombinedResults()
 	{
 		//Assign
-		var stubAlbumList = new List<AlbumResponse>
+		var stubAlbumList = new List<AlbumApiResponse>
 		{
-			_fixture.Create<AlbumResponse>(),
-			_fixture.Create<AlbumResponse>(),
-			_fixture.Create<AlbumResponse>()
+			_fixture.Create<AlbumApiResponse>(),
+			_fixture.Create<AlbumApiResponse>(),
+			_fixture.Create<AlbumApiResponse>()
 		};
 
-		var stubPhotoList = new List<PhotoResponse>
+		var stubPhotoList = new List<PhotoApiResponse>
 		{
-			_fixture.Create<PhotoResponse>(),
-			_fixture.Create<PhotoResponse>(),
-			_fixture.Create<PhotoResponse>(),
-			_fixture.Create<PhotoResponse>(),
-			_fixture.Create<PhotoResponse>(),
-			_fixture.Create<PhotoResponse>()
+			_fixture.Create<PhotoApiResponse>(),
+			_fixture.Create<PhotoApiResponse>(),
+			_fixture.Create<PhotoApiResponse>(),
+			_fixture.Create<PhotoApiResponse>(),
+			_fixture.Create<PhotoApiResponse>(),
+			_fixture.Create<PhotoApiResponse>()
 		};
 
 		var expectedResult = _fixture.Create<IList<PhotoAlbumAggregatedModel>>();
 
 		var stubUserId = _fixture.Create<int>();
 
-		_mockHttpCallHandler.Setup(x => x.GetMetaData<PhotoResponse>("photos"))
+		_mockHttpCallHandler.Setup(x => x.GetMetaData<PhotoApiResponse>("photos"))
 			.ReturnsAsync(stubPhotoList);
 
-		_mockHttpCallHandler.Setup(x => x.GetMetaData<AlbumResponse>("albums"))
+		_mockHttpCallHandler.Setup(x => x.GetMetaData<AlbumApiResponse>("albums"))
 			.ReturnsAsync(stubAlbumList);
 
 		_mockAggregator.Setup(x => x.Aggregate(stubUserId, stubPhotoList, stubAlbumList)).Returns(expectedResult);
@@ -63,8 +64,8 @@ private Mock<IAggregator> _mockAggregator;
 		//Assert
 		Assert.Equal(expectedResult.Count, result.Count);
 		
-		_mockHttpCallHandler.Verify(x => x.GetMetaData<PhotoResponse>("photos"), Times.Once);
-		_mockHttpCallHandler.Verify(x => x.GetMetaData<AlbumResponse>("albums"), Times.Once);
+		_mockHttpCallHandler.Verify(x => x.GetMetaData<PhotoApiResponse>("photos"), Times.Once);
+		_mockHttpCallHandler.Verify(x => x.GetMetaData<AlbumApiResponse>("albums"), Times.Once);
 		_mockAggregator.Verify(x => x.Aggregate(stubUserId, stubPhotoList, stubAlbumList), Times.Once);
 	}
 }

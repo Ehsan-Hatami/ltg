@@ -1,4 +1,5 @@
 ﻿using LiveTixGroup.Models;
+using LiveTixGroup.Models.ExternalApiResponses;
 
 namespace LiveTixGroup.Service;
 
@@ -13,10 +14,11 @@ public class PhotoAlbumGetter : IPhotoAlbumGetter
 		_aggregator = aggregator;
 	}
 
+	/// <inheritdoc />
 	public async Task<IList<PhotoAlbumAggregatedModel>> Get(int userId)
 	{
-		var photos = await _httpCallHandler.GetMetaData<PhotoResponse>("photos");
-		var albums = await _httpCallHandler.GetMetaData<AlbumResponse>("albums");
+		var photos = await _httpCallHandler.GetMetaData<PhotoApiResponse>("photos");
+		var albums = await _httpCallHandler.GetMetaData<AlbumApiResponse>("albums");
 
 		return _aggregator.Aggregate(userId, photos, albums);
 	}

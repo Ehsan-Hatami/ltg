@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Xml.XPath;
 using AutoFixture;
 using AutoMapper;
-using LiveTixGroup.Models;
+using LiveTixGroup.Models.ExternalApiResponses;
 using LiveTixGroup.Service.Mappers;
 using Moq;
 using Moq.Protected;
@@ -60,7 +60,7 @@ public class HttpCallHandlerTests
 			});
 		
 		//Act
-		var result = await _sut.GetMetaData<AlbumResponse>(_fixture.Create<string>());
+		var result = await _sut.GetMetaData<AlbumApiResponse>(_fixture.Create<string>());
 
 		//Assert
 		_moqHttpMessageHandler.Protected()

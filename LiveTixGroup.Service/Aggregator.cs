@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LiveTixGroup.Models;
+using LiveTixGroup.Models.ExternalApiResponses;
 
 namespace LiveTixGroup.Service
 {
@@ -12,7 +13,8 @@ namespace LiveTixGroup.Service
 			_mapper = mapper;
 		}
 
-		public IList<PhotoAlbumAggregatedModel> Aggregate(int userId, IList<PhotoResponse> photos, IList<AlbumResponse> albums)
+		/// <inheritdoc />
+		public IList<PhotoAlbumAggregatedModel> Aggregate(int userId, IList<PhotoApiResponse> photos, IList<AlbumApiResponse> albums)
 		{
 			var albumGroupedResult = albums
 				.GroupBy(album => album.UserId)
@@ -33,10 +35,9 @@ namespace LiveTixGroup.Service
 					});
 
 			//if condition to avoid unnecessary where condition
-			var filteredGroup = userId != default
+			var filteredGroup = userId != 0
 				? albumGroupedResult.Where(x => x.userId == userId).ToList()
 				: albumGroupedResult.ToList();
-
 
 			foreach (var album in filteredGroup.SelectMany(x => x.albumModels))
 			{

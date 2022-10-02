@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace LiveTixGroup.Models;
+namespace LiveTixGroup.Models.ExternalApiResponses;
 
-public class PhotoResponse
+public class PhotoApiResponse
 {
 	[JsonPropertyName("id")]
 	public int Id { get; set; }
@@ -12,10 +12,10 @@ public class PhotoResponse
 
 	[JsonPropertyName("title")]
 	public string Title { get; set; }
-	
+
 	[JsonPropertyName("url")]
 	public string Url { get; set; }
 
-	[JsonPropertyName("thumbnailUrl")] 
+	[JsonPropertyName("thumbnailUrl")]
 	public string ThumbnailUrl { get; set; }
 }

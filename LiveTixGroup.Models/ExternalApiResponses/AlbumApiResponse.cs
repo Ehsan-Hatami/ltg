@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace LiveTixGroup.Models;
+namespace LiveTixGroup.Models.ExternalApiResponses;
 
-public class AlbumResponse
+public class AlbumApiResponse
 {
 	[JsonPropertyName("id")]
 	public int Id { get; set; }

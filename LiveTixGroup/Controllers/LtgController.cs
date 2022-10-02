@@ -1,9 +1,11 @@
-﻿using LiveTixGroup.Service;
+﻿using System.Diagnostics.CodeAnalysis;
+using LiveTixGroup.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LiveTixGroup.Controllers;
 
 [Route("[controller]"), ApiController, Produces("application/json")]
+[ExcludeFromCodeCoverage]
 public class LtgController : Controller
 {
 	private readonly IPhotoAlbumGetter _photoAlbumGetter;

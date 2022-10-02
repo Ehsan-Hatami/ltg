@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using LiveTixGroup.Extension;
 using LiveTixGroup.Service.Mappers;
 
 namespace LiveTixGroup;
 
+[ExcludeFromCodeCoverage]
 public class Startup
 {
     private IConfiguration Configuration { get; }

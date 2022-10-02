@@ -11,6 +11,7 @@ public class HttpCallHandler : IHttpCallHandler
 		_clientFactory = clientFactory;
 	}
 
+	/// <inheritdoc />
 	public async Task<IList<T>> GetMetaData<T>(string endpoint)
 	{
 		using var client = _clientFactory.CreateClient("placeholderEndpoint");
