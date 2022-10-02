@@ -10,7 +10,7 @@ public class HttpCallHandler : IHttpCallHandler
 	{
 		_clientFactory = clientFactory;
 	}
-	
+
 	public async Task<IList<T>> GetMetaData<T>(string endpoint)
 	{
 		using var client = _clientFactory.CreateClient("placeholderEndpoint");
@@ -18,8 +18,6 @@ public class HttpCallHandler : IHttpCallHandler
 
 		var responseStream = await photoResponse.Content.ReadAsStreamAsync();
 
-		var response = await JsonSerializer.DeserializeAsync<IList<T>>(responseStream);
-
-		return response;
+		return await JsonSerializer.DeserializeAsync<IList<T>>(responseStream);
 	}
 }

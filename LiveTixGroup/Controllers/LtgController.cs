@@ -21,8 +21,7 @@ public class LtgController : Controller
 	/// </param>
 	/// <returns>filtered(if userId is provided) aggregated photo and album result</returns>
 	/// <response code="200">Returns the results</response>
-	/// <response code="400">If request fails</response>
-	/// <response code="500">Any internal error</response>
+	/// <response code="400">If request fails/throws exception through the procedure</response>
 	[HttpGet]
 	[Route("GetAggregatedPhotoAlbum")]
 	public async Task<IActionResult> Get(int? userId)

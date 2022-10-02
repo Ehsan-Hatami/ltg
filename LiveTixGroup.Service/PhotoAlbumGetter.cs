@@ -18,8 +18,6 @@ public class PhotoAlbumGetter : IPhotoAlbumGetter
 		var photos = await _httpCallHandler.GetMetaData<PhotoResponse>("photos");
 		var albums = await _httpCallHandler.GetMetaData<AlbumResponse>("albums");
 
-		var aggregatedResult = _aggregator.Aggregate(userId, photos, albums);
-
-		return aggregatedResult;
+		return _aggregator.Aggregate(userId, photos, albums);
 	}
 }
