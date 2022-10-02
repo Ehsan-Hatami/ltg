@@ -1,0 +1,13 @@
+.vs/
+LiveTixGroup.Service.Tests/bin/
+LiveTixGroup.Service/bin/Debug/net6.0/LiveTixGroup.Service.dll
+LiveTixGroup.Service.Tests/obj/Debug/net6.0/refint/LiveTixGroup.Service.Tests.dll
+LiveTixGroup/obj/
+LiveTixGroup/bin/
+LiveTixGroup.Service/obj/Debug/net6.0/LiveTixGroup.Service.AssemblyInfoInputs.cache
+LiveTixGroup.Service/obj/
+LiveTixGroup.Service.Tests/obj/
+LiveTixGroup.Models/obj/
+LiveTixGroup.Models/bin/
+LiveTixGroup.Service/bin/
+*.user
